@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   darkMode: "class",
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./index.html"],
   theme: {
     extend: {
       width: {
@@ -108,6 +109,12 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         dm: ["DM Sans", "sans-serif"],
+        plus: ["Plus Jakarta Sans", "sans-serif"],
+        nunito: ["Nunito Sans", "sans-serif"],
+      },
+      filter: {
+        'custom-gray': 'invert(73%) sepia(9%) saturate(783%) hue-rotate(188deg) brightness(91%) contrast(101%)',
+        'custom-white': 'invert(100%) sepia(14%) saturate(0%) hue-rotate(116deg) brightness(107%) contrast(100%)',
       },
       boxShadow: {
         "3xl": "14px 17px 40px 4px",
@@ -324,5 +331,21 @@ module.exports = {
       },
     }),
   },
-  plugins: [require("tailwindcss-rtl")],
+  plugins: [require("tailwindcss-rtl"), function ({ addUtilities }) {
+    addUtilities({
+      '.filter-gray': {
+        filter: 'brightness(0) saturate(100%) invert(83%) sepia(74%) saturate(2608%) hue-rotate(177deg) brightness(84%) contrast(94%)',
+
+      },
+      '.filter-white': {
+        filter: 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(108deg) brightness(126%) contrast(87%)',
+      },
+      '.filter-red': {
+        filter: 'brightness(0) saturate(100%) invert(11%) sepia(91%) saturate(5978%) hue-rotate(359deg) brightness(104%) contrast(81%)',
+      },
+      '.filter-green': {
+        filter: 'brightness(0) saturate(100%) invert(47%) sepia(75%) saturate(1707%) hue-rotate(125deg) brightness(93%) contrast(101%);',
+      }
+    });
+  }],
 };

@@ -1,17 +1,23 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import Navbar from './components/Navbar'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from './pages/HomePage'
 
-import RtlLayout from "layouts/rtl";
-import AdminLayout from "layouts/admin";
-import AuthLayout from "layouts/auth";
+const List = () => <div>Список</div>;
+const Saved = () => <div>Сохраненные</div>;
+
 const App = () => {
   return (
-    <Routes>
-      <Route path="auth/*" element={<AuthLayout />} />
-      <Route path="admin/*" element={<AdminLayout />} />
-      <Route path="rtl/*" element={<RtlLayout />} />
-      <Route path="/" element={<Navigate to="/admin" replace />} />
-    </Routes>
+    <Router>
+      <div className='w-full max-w-[1140px] mx-auto py-[15px] font-plus h-full pb-[30px]'>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<List />} />
+          <Route path="/server" element={<Saved />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
