@@ -11,108 +11,7 @@ const transactions = {
   blocked: 2040
 }
 
-export default function HomePage() {
-  const [allTransactions, setAllTransactions] = React.useState([]);
-
-  useEffect(() => {
-    setAllTransactions([
-
-    ])
-  }, [])
-
-  const data = [
-    {
-      id: 1157921,
-      date: "2022-03-09 09:56:51",
-      amount: 510.22,
-      clientId: 969838140,
-      type: "Перевод",
-      cardType: "Дебетовая",
-      status: "Отклонено",
-      risk: 0.98,
-    },
-    {
-      id: 1157921,
-      date: "2022-03-09 09:56:51",
-      amount: 510.22,
-      clientId: 969838140,
-      type: "Перевод",
-      cardType: "Дебетовая",
-      status: "Отклонено",
-      risk: 0.98,
-    },
-    {
-      id: 1157921,
-      date: "2022-03-09 09:56:51",
-      amount: 510.22,
-      clientId: 969838140,
-      type: "Перевод",
-      cardType: "Кредитная",
-      status: "Отклонено",
-      risk: 0.98,
-    },
-    {
-      id: 1157921,
-      date: "2022-03-09 09:56:51",
-      amount: 510.22,
-      clientId: 969838140,
-      type: "Перевод",
-      cardType: "Дебетовая",
-      status: "Отклонено",
-      risk: 0.98,
-    },
-    {
-      id: 1157921,
-      date: "2022-03-09 09:56:51",
-      amount: 510.22,
-      clientId: 969838140,
-      type: "Перевод",
-      cardType: "Дебетовая",
-      status: "Отклонено",
-      risk: 0.98,
-    },
-    {
-      id: 1157921,
-      date: "2022-03-09 09:56:51",
-      amount: 510.22,
-      clientId: 969838140,
-      type: "Перевод",
-      cardType: "Кредитная",
-      status: "Отклонено",
-      risk: 0.98,
-    },
-    {
-      id: 1157921,
-      date: "2022-03-09 09:56:51",
-      amount: 510.22,
-      clientId: 969838140,
-      type: "Перевод",
-      cardType: "Дебетовая",
-      status: "Отклонено",
-      risk: 0.98,
-    },
-    {
-      id: 1157921,
-      date: "2022-03-09 09:56:51",
-      amount: 510.22,
-      clientId: 969838140,
-      type: "Перевод",
-      cardType: "Дебетовая",
-      status: "Отклонено",
-      risk: 0.98,
-    },
-    {
-      id: 1157921,
-      date: "2022-03-09 09:56:51",
-      amount: 510.22,
-      clientId: 969838140,
-      type: "Перевод",
-      cardType: "Кредитная",
-      status: "Отклонено",
-      risk: 0.98,
-    },
-  ];
-
+export default function HomePage({ messages }) {
 
   return (
     <div className='grid grid-cols-1 grid-rows-[50px_185px_1fr-1fr] gap-[25px] mt-[25px] h-[calc(100%-120px)]'>
@@ -148,21 +47,21 @@ export default function HomePage() {
                 <th className="px-4 py-[10px] text-left">Id клиента</th>
                 <th className="px-4 py-[10px] text-left">Тип операции</th>
                 <th className="px-4 py-[10px] text-left">Тип карты</th>
-                <th className="px-4 py-[10px] text-left">Статус операции</th>
+                {/* <th className="px-4 py-[10px] text-left">Статус операции</th> */}
                 <th className="px-4 py-[10px] text-left rounded-tr-lg rounded-br-lg">Риск</th>
               </tr>
             </thead>
             <tbody>
-              {data.map((row, index) => (
+              {messages.map((row, index) => (
                 <tr key={index} className="bg-white text-[#202224] font-medium text-[14px]">
-                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.id}</td>
-                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.date}</td>
-                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.amount}</td>
-                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.clientId}</td>
-                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.type}</td>
-                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.cardType}</td>
-                  <td className="border-b border-[#F1F4F9] px-4 py-2 text-red-500">{row.status}</td>
-                  <td className="border-b border-[#F1F4F9] px-4 py-2 text-red-500">{row.risk.toFixed(2)}</td>
+                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.transaction_id}</td>
+                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.datetime}</td>
+                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.sum}</td>
+                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.client_id}</td>
+                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.oper_type}</td>
+                  <td className="border-b border-[#F1F4F9] px-4 py-2">{row.card_type === "DEBIT" ? "Дебетовая" : "Кредитная"}</td>
+                  {/* <td className="border-b border-[#F1F4F9] px-4 py-2 text-red-500">{row.status}</td> */}
+                  <td className={`border-b border-[#F1F4F9] px-4 py-2 ${row.pred > 0.5 ? "text-red-500" : "text-green-500"}`}>{row.pred.toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>

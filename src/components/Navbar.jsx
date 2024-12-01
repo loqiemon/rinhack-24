@@ -1,19 +1,22 @@
 import React from 'react'
 import Home from "../assets/home.svg"
 import List from "../assets/list.svg"
+import Logo from "../assets/logo.png"
+import Frame from "../assets/Frame-439.png"
 import Server from "../assets/server.svg"
 import { NavLink } from 'react-router-dom'
 
 export default function Navbar() {
   const items = [
     { id: 0, label: "Главная", icon: Home, path: "/" },
-    { id: 1, label: "Меню", icon: List, path: "/menu" },
-    { id: 2, label: "Сервер", icon: Server, path: "/server" },
+    { id: 1, label: "Транзакции", icon: List, path: "/menu" },
+    { id: 2, label: "Аналитика", icon: Server, path: "/server" },
   ];
 
   return (
-    <div className='w-full flex justify-center bg-white p-[10px] rounded-[10px] font-nunito '>
-      <div className='w-[550px] bg-[#E9EDF7] px-[80px] py-[5px] rounded-[10px] flex gap-4 items-center '>
+    <div className='w-full flex items-center justify-between bg-white p-[10px] rounded-[10px] font-nunito '>
+      <img src={Logo} className='w-[126px] h-[40px]' />
+      <div className='w-[300px] bg-[#E9EDF7] px-[18px] py-[5px] rounded-[10px] flex gap-4 items-center '>
         {items.map((item) => (
           <NavLink
             key={item.id}
@@ -43,6 +46,7 @@ export default function Navbar() {
           </NavLink>
         ))}
       </div>
+      <img src={Frame} className='w-[180px] h-[40px]' />
     </div>
   )
 }
